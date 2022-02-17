@@ -1,4 +1,8 @@
-# Wor**l**dle
+# Wor**l**dl**EH**
+
+Jolastu Euskal Herriko herriekin: https://worldleh.talaios.coop
+
+## Wor**l**dle
 
 Play this geographical wordle here: https://worldle.teuteuf.fr !
 

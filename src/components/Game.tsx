@@ -26,7 +26,7 @@ function getDayString() {
   return DateTime.now().toFormat("yyyy-MM-dd");
 }
 
-const MAX_TRY_COUNT = 6;
+const MAX_TRY_COUNT = 7;
 
 interface GameProps {
   settingsData: SettingsData;
@@ -116,8 +116,8 @@ export function Game({ settingsData }: GameProps) {
           className={`max-h-52 m-auto transition-transform duration-700 ease-in dark:invert ${
             hideImageMode && !gameEnded ? "h-0" : "h-full"
           }`}
-          alt="country to guess"
-          src={`images/countries/${country.code.toLowerCase()}/vector.svg`}
+          alt="Asmatzeko herria"
+          src={`images/eh/${country.code}.svg`}
           style={
             rotationMode && !gameEnded
               ? {
@@ -154,10 +154,10 @@ export function Game({ settingsData }: GameProps) {
             />
             <a
               className="underline w-full text-center block mt-4"
-              href={`https://www.google.com/maps?q=${getCountryName(
+              href={`https://www.openstreetmap.org/search?query=${getCountryName(
                 i18n.resolvedLanguage,
                 country
-              )}&hl=${i18n.resolvedLanguage}`}
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
             >

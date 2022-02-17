@@ -3,15 +3,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { Game } from "./components/Game";
 import React, { useEffect, useState } from "react";
 import { Infos } from "./components/panels/Infos";
-import { useTranslation } from "react-i18next";
-import { InfosFr } from "./components/panels/InfosFr";
 import { Settings } from "./components/panels/Settings";
 import { useSettings } from "./hooks/useSettings";
 import { Worldle } from "./components/Worldle";
 
 function App() {
-  const { t, i18n } = useTranslation();
-
   const [infoOpen, setInfoOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
 
@@ -35,19 +31,12 @@ function App() {
         autoClose={2000}
         bodyClassName="font-bold text-center"
       />
-      {i18n.resolvedLanguage === "fr" ? (
-        <InfosFr
-          isOpen={infoOpen}
-          close={() => setInfoOpen(false)}
-          settingsData={settingsData}
-        />
-      ) : (
-        <Infos
-          isOpen={infoOpen}
-          close={() => setInfoOpen(false)}
-          settingsData={settingsData}
-        />
-      )}
+
+      <Infos
+        isOpen={infoOpen}
+        close={() => setInfoOpen(false)}
+        settingsData={settingsData}
+      />
       <Settings
         isOpen={settingsOpen}
         close={() => setSettingsOpen(false)}
@@ -65,7 +54,8 @@ function App() {
               ❔
             </button>
             <h1 className="text-4xl font-bold uppercase tracking-wide text-center my-1 flex-auto">
-              Wor<span className="text-green-600">l</span>dle
+              Wor<span className="text-green-600">l</span>dl
+              <span className="text-red-600">eh</span>
             </h1>
             <button
               className="mx-3 text-xl"
@@ -77,14 +67,14 @@ function App() {
           </header>
           <Game settingsData={settingsData} />
           <footer className="flex justify-center text-sm mt-8 mb-1">
-            ❤️ <Worldle />? -
+            <Worldle /> -
             <a
               className="underline pl-1"
-              href="https://www.ko-fi.com/teuteuf"
+              href="https://wordle.talaios.coop"
               target="_blank"
               rel="noopener noreferrer"
             >
-              {t("buyMeACoffee")}
+              Wordle euskaraz
             </a>
           </footer>
         </div>

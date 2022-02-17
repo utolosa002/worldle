@@ -49,8 +49,8 @@ export function Settings({
               updateSettings({ theme: e.target.value as "light" | "dark" })
             }
           >
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
+            <option value="light">Argia</option>
+            <option value="dark">Iluna</option>
           </select>
           <label
             className="flex-1 ml-2 flex items-center"
