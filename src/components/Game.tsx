@@ -21,6 +21,7 @@ import { useTranslation } from "react-i18next";
 import { SettingsData } from "../hooks/useSettings";
 import { useMode } from "../hooks/useMode";
 import { useCountry } from "../hooks/useCountry";
+import { Twemoji } from "@teuteuf/react-emoji-render";
 
 function getDayString() {
   return DateTime.now().toFormat("yyyy-MM-dd");
@@ -75,7 +76,12 @@ export function Game({ settingsData }: GameProps) {
       const newGuess = {
         name: currentGuess,
         distance: geolib.getDistance(guessedCountry, country),
-        direction: geolib.getCompassDirection(guessedCountry, country),
+        direction: geolib.getCompassDirection(
+          guessedCountry,
+          country,
+          (origin, dest) =>
+            Math.round(geolib.getRhumbLineBearing(origin, dest) / 45) * 45
+        ),
       };
 
       addGuess(newGuess);
@@ -108,7 +114,10 @@ export function Game({ settingsData }: GameProps) {
           type="button"
           onClick={() => setHideImageMode(false)}
         >
-          {t("showCountry")}
+          <Twemoji
+            text={t("showCountry")}
+            options={{ className: "inline-block" }}
+          />
         </button>
       )}
       <div className="my-1">
@@ -133,7 +142,10 @@ export function Game({ settingsData }: GameProps) {
           type="button"
           onClick={() => setRotationMode(false)}
         >
-          {t("cancelRotation")}
+          <Twemoji
+            text={t("cancelRotation")}
+            options={{ className: "inline-block" }}
+          />
         </button>
       )}
       <Guesses
@@ -161,7 +173,10 @@ export function Game({ settingsData }: GameProps) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {t("showOnGoogleMaps")}
+              <Twemoji
+                text={t("showOnGoogleMaps")}
+                options={{ className: "inline-block" }}
+              />
             </a>
           </>
         ) : (
@@ -173,10 +188,15 @@ export function Game({ settingsData }: GameProps) {
                 setCurrentGuess={setCurrentGuess}
               />
               <button
-                className="border-2 uppercase my-0.5 hover:bg-gray-50 active:bg-gray-100 dark:hover:bg-slate-800 dark:active:bg-slate-700"
+                className="flex items-center justify-center border-2 uppercase my-0.5 hover:bg-gray-50 active:bg-gray-100 dark:hover:bg-slate-800 dark:active:bg-slate-700"
                 type="submit"
               >
-                🌍 {t("guess")}
+                <Twemoji
+                  text="🌍"
+                  options={{ className: "inline-block" }}
+                  className="flex items-center justify-center"
+                />{" "}
+                <span className="ml-1">{t("guess")}</span>
               </button>
             </div>
           </form>
